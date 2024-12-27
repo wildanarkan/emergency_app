@@ -37,6 +37,15 @@ dependencies:
   cupertino_icons: ^1.0.8
   get: ^4.6.6
 
+  ## Dependencies injection for modular apps and testing purpose
+  get_it: ^7.6.7
+
+  ## Http for internet connection
+  http: ^1.2.2
+
+  ## Mock testing
+  mocktail: ^1.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

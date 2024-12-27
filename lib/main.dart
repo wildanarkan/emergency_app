@@ -1,13 +1,16 @@
+import 'package:emergency_app/di/app_dependencies.dart';
 import 'package:emergency_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
+  _initialization();
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const GetMaterialApp(
@@ -15,4 +18,13 @@ class MyApp extends StatelessWidget {
       home: LoginPage(),
     );
   }
+}
+
+Future<bool> _initialization() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  /// Register dependency injection here
+  await configureAppDependencies();
+
+  return true;
 }
