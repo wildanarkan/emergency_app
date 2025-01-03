@@ -1,5 +1,5 @@
 import 'package:emergency_app/core/constant.dart';
-import 'package:emergency_app/pages/home_page.dart';
+import 'package:emergency_app/pages/home/home_page.dart';
 import 'package:emergency_app/pages/login/login_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
