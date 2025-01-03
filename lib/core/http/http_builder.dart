@@ -42,7 +42,7 @@ class HttpBuilder {
     Json? query,
     Map<String, String>? headers,
   }) {
-    final baseUrl = Future<String>.value('base-url.com');
+    final baseUrl = Future<String>.value('cacing.cloud/api/');
     return _buildClient(baseUrl, path, query, headers);
   }
 }

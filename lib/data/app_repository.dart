@@ -1,11 +1,13 @@
+import 'package:emergency_app/core/http/json_response.dart';
 import 'package:emergency_app/data/app_network.dart';
+import 'package:emergency_app/data/response/login_response.dart';
 
 class AppRepository {
   final AppNetwork _appNetwork;
 
   AppRepository(this._appNetwork);
 
-  Future<String> login({
+  Future<JsonResponse<LoginResponse>> login({
     required String email,
     required String password,
   }) {
