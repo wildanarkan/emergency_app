@@ -9,11 +9,10 @@ class HomeProvider extends ChangeNotifier {
 
   Future<bool> logout() async {
     final response = await _repository.logout();
-    if (response?.code != 200) {
-      final sharedPreferences = await SharedPreferences.getInstance();
-      await sharedPreferences.setString(Constant.tokenKey, '');
-      return true;
-    }
-    return false;
+    if (response.code != 200) return false;
+
+    final sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString(Constant.tokenKey, '');
+    return true;
   }
 }

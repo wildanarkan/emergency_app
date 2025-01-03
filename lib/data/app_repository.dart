@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AppRepository {
   final AppNetwork _appNetwork;
 
-
   AppRepository(this._appNetwork);
 
   Future<LoginResponse> login({
@@ -17,7 +16,7 @@ class AppRepository {
     return _appNetwork.login(email: email, password: password);
   }
 
-  Future<LogoutResponse?> logout() async {
+  Future<LogoutResponse> logout() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     final token = sharedPreferences.getString(Constant.tokenKey);
     return _appNetwork.logout(token: token ?? '');
