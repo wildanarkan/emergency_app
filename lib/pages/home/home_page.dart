@@ -26,13 +26,13 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(0),
         children: [
           const BuildHeader(
-            title: 'Selamat Datang',
+            title: 'Selamat Datang user',
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const BuildBox(
-                title: 'Pilih Kasus yang dialami pasien',
+                title: 'Pilih Kasus yang dialami user',
               ),
               BuildBox(
                 title: 'Kasus Trauma',
