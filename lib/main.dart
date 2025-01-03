@@ -1,10 +1,22 @@
 import 'package:emergency_app/core/di/app_dependencies.dart';
 import 'package:emergency_app/core/route/AppRoute.dart';
+import 'package:emergency_app/pages/home/home_provider.dart';
+import 'package:emergency_app/pages/login/login_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => HomeProvider()),
+        ChangeNotifierProvider(create: (context) => LoginProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
   _initialization();
+
 }
 
 class MyApp extends StatelessWidget {

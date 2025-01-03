@@ -21,70 +21,36 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Provider<HomeProvider>(
-      create: (_) => HomeProvider(),
-      child:  Scaffold(
-            body: ListView(
-              padding: const EdgeInsets.all(0),
-              children: [
-                const BuildHeader(
-                  title: 'Selamat Datang',
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const BuildBox(
-                      title: 'Pilih Kasus yang dialami pasien',
-                    ),
-                    BuildBox(
-                      title: 'Kasus Trauma',
-                      onTap: () => Get.to(() => const Trauma1()),
-                    ),
-                    BuildBox(
-                        title: 'Kasus Non Trauma',
-                        onTap: () => Get.to(() => const Nontrauma1())),
-                    BuildBox(title: 'Log Out', onTap: () => _handleLogOut()),
-                  ],
-                )
-              ],
-            ),
-            backgroundColor: AppColor.background,
+    return Scaffold(
+      body: ListView(
+        padding: const EdgeInsets.all(0),
+        children: [
+          const BuildHeader(
+            title: 'Selamat Datang',
           ),
-    );
-
-    return ChangeNotifierProvider(
-      create: (context) => HomeProvider(),
-      child: Consumer(
-        builder: (context, value, child) {
-          return Scaffold(
-            body: ListView(
-              padding: const EdgeInsets.all(0),
-              children: [
-                const BuildHeader(
-                  title: 'Selamat Datang',
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const BuildBox(
-                      title: 'Pilih Kasus yang dialami pasien',
-                    ),
-                    BuildBox(
-                      title: 'Kasus Trauma',
-                      onTap: () => Get.to(() => const Trauma1()),
-                    ),
-                    BuildBox(
-                        title: 'Kasus Non Trauma',
-                        onTap: () => Get.to(() => const Nontrauma1())),
-                    BuildBox(title: 'Log Out', onTap: () => _handleLogOut()),
-                  ],
-                )
-              ],
-            ),
-            backgroundColor: AppColor.background,
-          );
-        },
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const BuildBox(
+                title: 'Pilih Kasus yang dialami pasien',
+              ),
+              BuildBox(
+                title: 'Kasus Trauma',
+                onTap: () => Get.to(() => const Trauma1()),
+              ),
+              BuildBox(
+                title: 'Kasus Non Trauma',
+                onTap: () => Get.to(() => const Nontrauma1()),
+              ),
+              BuildBox(
+                title: 'Log Out',
+                onTap: () => _handleLogOut(),
+              ),
+            ],
+          )
+        ],
       ),
+      backgroundColor: AppColor.background,
     );
   }
 
@@ -92,12 +58,14 @@ class _HomePageState extends State<HomePage> {
     LoadingDialog.runWithLoading(
       context,
       () {
-        return context.read<HomeProvider>().logout();
+        return Provider.of<HomeProvider>(context, listen: false).logout();
       },
     ).then(
       (value) {
         if (!mounted) return;
-        context.pushReplacementNamed(AppRoute.login.name!);
+        if (value) {
+          context.pushReplacementNamed(AppRoute.login.name!);
+        }
       },
     );
   }

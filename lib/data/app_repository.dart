@@ -1,5 +1,4 @@
 import 'package:emergency_app/core/constant.dart';
-import 'package:emergency_app/core/http/json_response.dart';
 import 'package:emergency_app/data/app_network.dart';
 import 'package:emergency_app/data/response/login_response.dart';
 import 'package:emergency_app/data/response/logout_response.dart';
@@ -11,14 +10,14 @@ class AppRepository {
 
   AppRepository(this._appNetwork);
 
-  Future<JsonResponse<LoginResponse>> login({
+  Future<LoginResponse> login({
     required String email,
     required String password,
   }) {
     return _appNetwork.login(email: email, password: password);
   }
 
-  Future<JsonResponse<LogoutResponse>> logout() async {
+  Future<LogoutResponse?> logout() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     final token = sharedPreferences.getString(Constant.tokenKey);
     return _appNetwork.logout(token: token ?? '');
