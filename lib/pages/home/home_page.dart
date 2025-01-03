@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(0),
         children: [
           const BuildHeader(
-            title: 'Selamat Datang',
+            title: 'Selamat Datang Petugas',
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
