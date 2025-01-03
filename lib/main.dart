@@ -1,7 +1,6 @@
-import 'package:emergency_app/di/app_dependencies.dart';
-import 'package:emergency_app/pages/login_page.dart';
+import 'package:emergency_app/core/di/app_dependencies.dart';
+import 'package:emergency_app/core/route/AppRoute.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +12,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
-      title: 'Emergency App',
-      home: LoginPage(),
+    return MaterialApp.router(
+      routerConfig: AppRoute.route,
     );
   }
 }
