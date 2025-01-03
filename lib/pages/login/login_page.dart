@@ -78,7 +78,7 @@ void _handleLogin({
         );
   }).then((response) {
     if (!context.mounted) return;
-    if (response.data?.accessToken?.isEmpty ?? false) {
+    if (response.code != 200) {
       showSnackBar(context, response.message);
       return;
     }

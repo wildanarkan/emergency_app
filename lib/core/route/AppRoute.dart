@@ -22,7 +22,7 @@ class AppRoute {
     redirect: (context, state) async {
       final sharedPreferences = await SharedPreferences.getInstance();
       final token = sharedPreferences.getString(Constant.tokenKey);
-      if (token != null && token.isNotEmpty) {
+      if (token?.isNotEmpty == true) {
         log('token : $token');
         return home.path;
       }

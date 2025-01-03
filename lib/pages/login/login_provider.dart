@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:emergency_app/core/constant.dart';
 import 'package:emergency_app/core/di/service_locator.dart';
 import 'package:emergency_app/data/app_repository.dart';
@@ -15,17 +13,9 @@ class LoginProvider extends ChangeNotifier {
     required String password,
   }) async {
     final response = await _repository.login(email: email, password: password);
-
-    
-    if (response.data?.accessToken?.isNotEmpty ?? false) {
-      final sharedPreferences = await SharedPreferences.getInstance();
-      log(response.message.toString());
-      log(response.data.toString());
-      await sharedPreferences.setString(
-        Constant.tokenKey,
-        response.data?.accessToken ?? '',
-      );
-    }
+    final token = response.data?.accessToken ?? '';
+    final sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString(Constant.tokenKey, token);
     return response;
   }
 }
