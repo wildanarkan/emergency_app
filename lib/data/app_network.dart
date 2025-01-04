@@ -9,7 +9,7 @@ class AppNetwork {
 
   AppNetwork(this._http);
 
-  static const _login = 'login';
+  static const _login = 'login-app';
   static const _logout = 'logout';
 
   Future<LoginResponse> login({

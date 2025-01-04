@@ -1,13 +1,9 @@
-import 'package:emergency_app/commons/app_color.dart';
 import 'package:emergency_app/core/route/AppRoute.dart';
 import 'package:emergency_app/pages/home/home_provider.dart';
-import 'package:emergency_app/pages/nontrauma/nontrauma_1.dart';
-import 'package:emergency_app/pages/trauma/trauma_1.dart';
 import 'package:emergency_app/widgets/LoadingDialog.dart';
+import 'package:emergency_app/widgets/build_app_bar.dart';
 import 'package:emergency_app/widgets/build_box.dart';
-import 'package:emergency_app/widgets/build_header.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -22,35 +18,51 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.all(0),
-        children: [
-          const BuildHeader(
-            title: 'Selamat Datang user',
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const BuildBox(
-                title: 'Pilih Kasus yang dialami user',
-              ),
-              BuildBox(
-                title: 'Kasus Trauma',
-                onTap: () => Get.to(() => const Trauma1()),
-              ),
-              BuildBox(
-                title: 'Kasus Non Trauma',
-                onTap: () => Get.to(() => const Nontrauma1()),
-              ),
-              BuildBox(
-                title: 'Log Out',
-                onTap: () => _handleLogOut(),
-              ),
-            ],
-          )
-        ],
+      appBar: buildAppBar(
+        context: context,
+        title: 'Home',
+        enableBackButton: false,
       ),
-      backgroundColor: AppColor.background,
+      body: Container(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: BuildBox(
+                    title: 'Kasus Trauma',
+                    height: 100,
+                    center: true,
+                    onTap: () => context.pushNamed(AppRoute.trauma1.name!),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: BuildBox(
+                    title: 'Kasus Non Trauma',
+                    height: 100,
+                    center: true,
+                    onTap: () => context.pushNamed(AppRoute.nonTrauma.name!),
+                  ),
+                ),
+              ],
+            ),
+            const Expanded(child: SizedBox()),
+            Row(
+              children: [
+                Expanded(
+                  child: BuildBox(
+                    title: 'Log Out',
+                    center: true,
+                    onTap: () => _handleLogOut(),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 

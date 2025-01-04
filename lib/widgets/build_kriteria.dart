@@ -9,8 +9,6 @@ class BuildKriteria extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(20),
-      padding: const EdgeInsets.all(5),
       color: Colors.white,
       child: IntrinsicHeight(
         child: Row(
@@ -32,7 +30,9 @@ class BuildKriteria extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Expanded(
                     child: Container(
                       width: double.infinity,
@@ -59,8 +59,7 @@ class BuildKriteria extends StatelessWidget {
                     color: Colors.blue,
                     child: const Text(
                       'RR<10 atau lebih dari 29',
-                      style:
-                          TextStyle(color: Colors.white, fontSize: 13),
+                      style: TextStyle(color: Colors.white, fontSize: 13),
                     ),
                   ),
                   const BuildBoxLightBlue(
@@ -73,17 +72,13 @@ class BuildKriteria extends StatelessWidget {
                       text: "Open pneumothorax atau flail chest"),
                   const BuildBoxLightBlue(
                       text: "Anggota tubuh hancur atau terlepas"),
+                  const BuildBoxLightBlue(text: "Suspect fraktur pelvis mayor"),
                   const BuildBoxLightBlue(
-                      text: "Suspect fraktur pelvis mayor"),
-                  const BuildBoxLightBlue(
-                      text:
-                          "Cedera leher / tulang belakang dengan kelumpuhan"),
+                      text: "Cedera leher / tulang belakang dengan kelumpuhan"),
                   const BuildBoxLightBlue(
                       text:
                           "Patah tulang panjang proksimal lebih dari 1 tempat"),
-                  const BuildBoxLightBlue(
-                      text:
-                          "Anggota tubuh teramputasi"),
+                  const BuildBoxLightBlue(text: "Anggota tubuh teramputasi"),
                   const BuildBoxLightBlue(
                       text:
                           "Suspect fraktur tulang tengkorak terbuka atau depressed"),

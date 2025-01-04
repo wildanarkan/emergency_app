@@ -1,4 +1,4 @@
-import 'package:emergency_app/pages/trauma/trauma_input.dart';
+import 'package:emergency_app/pages/form/form_input.dart';
 import 'package:emergency_app/widgets/build_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,7 +41,7 @@ class _Result1State extends State<Result1> {
           BuildBox(
             title: 'Daftar rumah sakit Tujuan',
             center: true,
-            onTap: () => Get.to(() => const TraumaInput()),
+            onTap: () => Get.to(() => const FormInput()),
           ),
         ],
       ),
