@@ -8,9 +8,7 @@ class HomeProvider extends ChangeNotifier {
   final _repository = serviceLocator.get<AppRepository>();
 
   Future<bool> logout() async {
-    final response = await _repository.logout();
-    if (response.code != 200) return false;
-
+    await _repository.logout();
     final sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString(Constant.tokenKey, '');
     return true;
