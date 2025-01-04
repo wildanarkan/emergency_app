@@ -8,6 +8,8 @@ class BuildBox extends StatelessWidget {
     this.backgroundColor,
     this.center = false,
     this.titleColor,
+    this.alignment,
+    this.height,
   });
 
   final String title;
@@ -15,17 +17,22 @@ class BuildBox extends StatelessWidget {
   final VoidCallback? onTap;
   final Color? backgroundColor;
   final bool center;
+  final Alignment? alignment;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
       child: Container(
+        height: height,
         margin: const EdgeInsets.all(10),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black),
-          color: backgroundColor ?? Colors.white,
+          border: Border.all(
+            color: Colors.black,
+          ),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: center
             ? Center(

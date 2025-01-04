@@ -1,11 +1,10 @@
-import 'package:emergency_app/commons/app_color.dart';
-import 'package:emergency_app/pages/trauma/trauma_2.dart';
-import 'package:emergency_app/pages/trauma/trauma_no.dart';
-import 'package:emergency_app/widgets/build_box.dart';
-import 'package:emergency_app/widgets/build_header.dart';
+import 'package:emergency_app/core/route/AppRoute.dart';
+import 'package:emergency_app/data/model/button_option_model.dart';
+import 'package:emergency_app/widgets/build_app_bar.dart';
+import 'package:emergency_app/widgets/build_button_option.dart';
 import 'package:emergency_app/widgets/build_kriteria.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class Trauma1 extends StatelessWidget {
   const Trauma1({super.key});
@@ -13,33 +12,40 @@ class Trauma1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.background,
-      body: ListView(
-        padding: const EdgeInsets.all(0),
-        children: [
-          const BuildHeader(title: 'Penentuan prenotifikasi Pasien Trauma'),
-          Column(
-            children: [
-              const BuildBox(
-                  title:
-                      'Pastikan apakah ada salah satu\n keadaan ini pada pasien'),
-              const BuildKriteria(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+      appBar: buildAppBar(
+        context: context,
+        title: 'Prenotifikasi Pasien Trauma',
+        enableBackButton: true,
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            const Expanded(
+              child: Column(
                 children: [
-                  BuildBox(
-                    title: 'Ya',
-                    onTap: () => Get.to(() => const Trauma2()),
+                  SizedBox(height: 20),
+                  Text(
+                    'Pastikan apakah ada salah satu keadaan ini pada pasien',
+                    style: TextStyle(fontSize: 20),
                   ),
-                  BuildBox(
-                    title: 'Tidak',
-                    onTap: () => Get.to(() => const TraumaNo()),
-                  ),
+                  SizedBox(height: 20),
+                  BuildKriteria(),
                 ],
-              )
-            ],
-          )
-        ],
+              ),
+            ),
+            buildButtonOption(
+              option1: ButtonOptionModel(
+                title: 'Ya',
+                onTap: () => context.pushNamed(AppRoute.trauma2.name!),
+              ),
+              option2: ButtonOptionModel(
+                title: 'Tidak',
+                onTap: () => context.pushNamed(AppRoute.traumaNo.name!),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
