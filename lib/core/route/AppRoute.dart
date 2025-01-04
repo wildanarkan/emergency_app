@@ -1,10 +1,14 @@
 import 'dart:developer';
 
 import 'package:emergency_app/core/constant.dart';
+import 'package:emergency_app/pages/form/form_input.dart';
 import 'package:emergency_app/pages/home/home_page.dart';
 import 'package:emergency_app/pages/login/login_page.dart';
 import 'package:emergency_app/pages/nontrauma/nontrauma_1.dart';
 import 'package:emergency_app/pages/trauma/trauma_1.dart';
+import 'package:emergency_app/pages/trauma/trauma_2.dart';
+import 'package:emergency_app/pages/trauma/trauma_3.dart';
+import 'package:emergency_app/pages/trauma/trauma_4.dart';
 import 'package:emergency_app/pages/trauma/trauma_no.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,6 +25,7 @@ class AppRoute {
       trauma4,
       traumaNo,
       nonTrauma,
+      formInput,
     ],
   );
 
@@ -56,19 +61,19 @@ class AppRoute {
   static final trauma2 = GoRoute(
     name: 'trauma2',
     path: '/trauma2',
-    builder: (context, state) => const Trauma1(),
+    builder: (context, state) => const Trauma2(),
   );
 
   static final trauma3 = GoRoute(
     name: 'trauma3',
     path: '/trauma3',
-    builder: (context, state) => const Trauma1(),
+    builder: (context, state) => const Trauma3(),
   );
 
   static final trauma4 = GoRoute(
     name: 'trauma4',
     path: '/trauma4',
-    builder: (context, state) => const Trauma1(),
+    builder: (context, state) => const Trauma4(),
   );
 
   static final traumaNo = GoRoute(
@@ -82,5 +87,12 @@ class AppRoute {
     name: 'nonTrauma',
     path: '/nonTrauma',
     builder: (context, state) => const Nontrauma1(),
+  );
+
+  // =========================================================== Form Inout
+  static final formInput = GoRoute(
+    name: 'formInput',
+    path: '/formInput',
+    builder: (context, state) => const FormInput(),
   );
 }
