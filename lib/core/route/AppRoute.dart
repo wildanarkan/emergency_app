@@ -1,10 +1,22 @@
 import 'dart:developer';
 
 import 'package:emergency_app/core/constant.dart';
+import 'package:emergency_app/data/model/non_trauma_model.dart';
 import 'package:emergency_app/pages/form/form_input.dart';
 import 'package:emergency_app/pages/home/home_page.dart';
 import 'package:emergency_app/pages/login/login_page.dart';
 import 'package:emergency_app/pages/nontrauma/nontrauma_1.dart';
+import 'package:emergency_app/pages/nontrauma/nontrauma_10.dart';
+import 'package:emergency_app/pages/nontrauma/nontrauma_2.dart';
+import 'package:emergency_app/pages/nontrauma/nontrauma_3.dart';
+import 'package:emergency_app/pages/nontrauma/nontrauma_4.dart';
+import 'package:emergency_app/pages/nontrauma/nontrauma_5.dart';
+import 'package:emergency_app/pages/nontrauma/nontrauma_6.dart';
+import 'package:emergency_app/pages/nontrauma/nontrauma_7.dart';
+import 'package:emergency_app/pages/nontrauma/nontrauma_8.dart';
+import 'package:emergency_app/pages/nontrauma/nontrauma_9.dart';
+import 'package:emergency_app/pages/result/result_1.dart';
+import 'package:emergency_app/pages/result/result_2.dart';
 import 'package:emergency_app/pages/trauma/trauma_1.dart';
 import 'package:emergency_app/pages/trauma/trauma_2.dart';
 import 'package:emergency_app/pages/trauma/trauma_3.dart';
@@ -23,8 +35,19 @@ class AppRoute {
       trauma2,
       trauma3,
       trauma4,
+      traumaResult,
       traumaNo,
-      nonTrauma,
+      nonTrauma1,
+      nonTrauma2,
+      nonTrauma3,
+      nonTrauma4,
+      nonTrauma5,
+      nonTrauma6,
+      nonTrauma7,
+      nonTrauma8,
+      nonTrauma9,
+      nonTrauma10,
+      nonTraumaResult,
       formInput,
     ],
   );
@@ -82,11 +105,104 @@ class AppRoute {
     builder: (context, state) => const TraumaNo(),
   );
 
+  static final traumaResult = GoRoute(
+    name: 'traumaResult',
+    path: '/traumaResult',
+    builder: (context, state) => const Result1(),
+  );
+
   // =========================================================== Non Trauma
-  static final nonTrauma = GoRoute(
-    name: 'nonTrauma',
-    path: '/nonTrauma',
+  static final nonTrauma1 = GoRoute(
+    name: 'nonTrauma1',
+    path: '/nonTrauma1',
     builder: (context, state) => const Nontrauma1(),
+  );
+
+  static final nonTrauma2 = GoRoute(
+    name: 'nonTrauma2',
+    path: '/nonTrauma2',
+    builder: (context, state) {
+      final data = state.extra as NonTraumaModel;
+      return Nontrauma2(data: data);
+    },
+  );
+
+  static final nonTrauma3 = GoRoute(
+    name: 'nonTrauma3',
+    path: '/nonTrauma3',
+    builder: (context, state) {
+      final data = state.extra as NonTraumaModel;
+      return Nontrauma3(data: data);
+    },
+  );
+
+  static final nonTrauma4 = GoRoute(
+    name: 'nonTrauma4',
+    path: '/nonTrauma4',
+    builder: (context, state) {
+      final data = state.extra as NonTraumaModel;
+      return Nontrauma4(data: data);
+    },
+  );
+
+  static final nonTrauma5 = GoRoute(
+    name: 'nonTrauma5',
+    path: '/nonTrauma5',
+    builder: (context, state) {
+      final data = state.extra as NonTraumaModel;
+      return Nontrauma5(data: data);
+    },
+  );
+
+  static final nonTrauma6 = GoRoute(
+    name: 'nonTrauma6',
+    path: '/nonTrauma6',
+    builder: (context, state) {
+      final data = state.extra as NonTraumaModel;
+      return Nontrauma6(data: data);
+    },
+  );
+
+  static final nonTrauma7 = GoRoute(
+    name: 'nonTrauma7',
+    path: '/nonTrauma7',
+    builder: (context, state) {
+      final data = state.extra as NonTraumaModel;
+      return Nontrauma7(data: data);
+    },
+  );
+
+  static final nonTrauma8 = GoRoute(
+    name: 'nonTrauma8',
+    path: '/nonTrauma8',
+    builder: (context, state) {
+      final data = state.extra as NonTraumaModel;
+      return Nontrauma8(data: data);
+    },
+  );
+
+  static final nonTrauma9 = GoRoute(
+    name: 'nonTrauma9',
+    path: '/nonTrauma9',
+    builder: (context, state) {
+      final data = state.extra as NonTraumaModel;
+      return Nontrauma9(data: data);
+    },
+  );
+
+  static final nonTrauma10 = GoRoute(
+    name: 'nonTrauma10',
+    path: '/nonTrauma10',
+    builder: (context, state) {
+      final data = state.extra as NonTraumaModel;
+      return Nontrauma10(data: data);
+    },
+  );
+
+  static final nonTraumaResult = GoRoute(
+    name: 'nonTraumaResult',
+    path: '/nonTraumaResult',
+    builder: (context, state) => const Result2(),
   );
 
   // =========================================================== Form Inout

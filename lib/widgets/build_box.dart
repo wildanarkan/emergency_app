@@ -38,11 +38,13 @@ class BuildBox extends StatelessWidget {
             ? Center(
                 child: Text(
                 title,
-                style: TextStyle(color: titleColor),
+                style:
+                    TextStyle(color: titleColor, fontWeight: FontWeight.bold),
               ))
             : Text(
                 title,
-                style: TextStyle(color: titleColor),
+                style:
+                    TextStyle(color: titleColor, fontWeight: FontWeight.bold),
               ),
       ),
     );

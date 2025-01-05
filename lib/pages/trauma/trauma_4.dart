@@ -18,7 +18,7 @@ class _Trauma4State extends State<Trauma4> {
     return Scaffold(
       appBar: buildAppBar(
         context: context,
-        title: 'Prenotifikasi Pasien Trauma',
+        title: 'Prenotifikasi Trauma',
         enableBackButton: true,
       ),
       body: Container(
@@ -26,9 +26,10 @@ class _Trauma4State extends State<Trauma4> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 20),
             const Text(
               'Lanjutkan dengan prenotifikasi ke IGD RSUD minimal tipe C',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             const Text(

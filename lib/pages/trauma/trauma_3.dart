@@ -18,16 +18,17 @@ class _Trauma3State extends State<Trauma3> {
     return Scaffold(
       appBar: buildAppBar(
         context: context,
-        title: 'Prenotifikasi Pasien Trauma',
+        title: 'Prenotifikasi Trauma',
         enableBackButton: true,
       ),
       body: Container(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
+            const SizedBox(height: 20),
             const Text(
               'Apakah jalan nafas dan perdarahan dapat dikontrol?',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const Expanded(child: SizedBox()),
             buildButtonOption(
