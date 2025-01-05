@@ -1,5 +1,6 @@
 import 'package:emergency_app/core/di/app_dependencies.dart';
 import 'package:emergency_app/core/route/AppRoute.dart';
+import 'package:emergency_app/pages/form/form_provider.dart';
 import 'package:emergency_app/pages/home/home_provider.dart';
 import 'package:emergency_app/pages/login/login_provider.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => HomeProvider()),
         ChangeNotifierProvider(create: (context) => LoginProvider()),
+        ChangeNotifierProvider(create: (context) => FormProvider()),
       ],
       child: const MyApp(),
     ),
@@ -26,6 +28,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: AppRoute.route,
+      theme: ThemeData(
+        primaryColor: Colors.blue
+      ),
     );
   }
 }
