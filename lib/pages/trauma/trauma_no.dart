@@ -18,7 +18,7 @@ class _TraumaNoState extends State<TraumaNo> {
     return Scaffold(
       appBar: buildAppBar(
         context: context,
-        title: 'Prenotifikasi Pasien Trauma',
+        title: 'Prenotifikasi Trauma',
         enableBackButton: true,
       ),
       body: Container(
@@ -26,9 +26,10 @@ class _TraumaNoState extends State<TraumaNo> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 20),
             const Text(
               'Bukan indikasi untuk prenotifikasi',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             const Text(
