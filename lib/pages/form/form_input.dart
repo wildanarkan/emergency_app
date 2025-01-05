@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:emergency_app/data/model/button_option_model.dart';
 import 'package:emergency_app/pages/form/form_provider.dart';
 import 'package:emergency_app/widgets/build_app_bar.dart';
@@ -5,6 +8,7 @@ import 'package:emergency_app/widgets/build_button_option.dart';
 import 'package:emergency_app/widgets/build_date.dart';
 import 'package:emergency_app/widgets/build_dropdown.dart';
 import 'package:emergency_app/widgets/build_field.dart';
+import 'package:emergency_app/widgets/build_photo_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,15 +20,40 @@ class FormInput extends StatefulWidget {
 }
 
 class _FormInputState extends State<FormInput> {
-  List<String> hospitals = ['-']; // Initialize with default value
+  List<String> hospitals = ['-'];
   String? selectedHospital = '-';
   bool isLoading = true;
+  File? _imageFile;
+
+  // Controllers for form fields
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _descController = TextEditingController();
+  final TextEditingController _mechanismController = TextEditingController();
+  final TextEditingController _injuryController = TextEditingController();
+  final TextEditingController _treatmentController = TextEditingController();
+
+  // Variables for dates and dropdowns
+  DateTime? _arrivalDate;
+  DateTime? _incidentDate;
+  String _status = 'Menuju RS';
+  String _case = 'Trauma';
 
   @override
   void initState() {
     super.initState();
-    // Fetch hospitals when page loads
     _getHospital();
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _ageController.dispose();
+    _descController.dispose();
+    _mechanismController.dispose();
+    _injuryController.dispose();
+    _treatmentController.dispose();
+    super.dispose();
   }
 
   @override
@@ -45,56 +74,66 @@ class _FormInputState extends State<FormInput> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          const BuildField(
+                          BuildField(
                             title: 'Name',
                             hintText: 'Ahmad Faisal',
+                            controller: _nameController,
                           ),
-                          const BuildField(
+                          BuildField(
                             title: 'Age',
                             hintText: '19',
                             keyboardType: TextInputType.number,
+                            controller: _ageController,
                           ),
-                          const BuildField(
+                          BuildField(
                             title: 'Desc',
-                            hintText: '',
+                            hintText: 'Permintaan atau pesan khusus',
                             maxLines: 4,
+                            controller: _descController,
                           ),
                           BuildDate(
                             title: 'Arrival',
-                            hintText: 'Enter Date',
+                            hintText: 'Waktu Kedatangan',
                             firstDate: DateTime.now(),
                             lastDate:
                                 DateTime.now().add(const Duration(days: 40)),
                             initialDate:
                                 DateTime.now().add(const Duration(days: 20)),
                             onChanged: (date) {
-                              print('Selected Date: $date');
+                              setState(() {
+                                _arrivalDate = date;
+                              });
                             },
                           ),
                           BuildDropdown(
                             title: 'Status',
                             hintText: 'Choose something',
                             items: const [
-                              'Menuju RS',
                               'Selesai',
+                              'Menuju RS',
                             ],
-                            selectedItem: 'Menuju RS',
+                            selectedItem: _status,
                             onChanged: (selectedValue) {
-                              print('Selected: $selectedValue');
+                              setState(() {
+                                _status = selectedValue ?? 'Menuju RS';
+                              });
                             },
                             isRequired: true,
                           ),
-                          const BuildField(
+                          BuildField(
                             title: 'Mechanism',
-                            hintText: '',
+                            hintText: 'Mekanis Cedera',
+                            controller: _mechanismController,
                           ),
-                          const BuildField(
+                          BuildField(
                             title: 'Injury',
-                            hintText: '',
+                            hintText: 'Cedera yang dialami',
+                            controller: _injuryController,
                           ),
-                          const BuildField(
+                          BuildField(
                             title: 'Treatment',
-                            hintText: '',
+                            hintText: 'Tindakan yang di lakukan',
+                            controller: _treatmentController,
                           ),
                           BuildDropdown(
                             title: 'Case',
@@ -103,9 +142,11 @@ class _FormInputState extends State<FormInput> {
                               'Trauma',
                               'Non Trauma',
                             ],
-                            selectedItem: 'Trauma',
+                            selectedItem: _case,
                             onChanged: (selectedValue) {
-                              print('Selected: $selectedValue');
+                              setState(() {
+                                _case = selectedValue ?? 'Trauma';
+                              });
                             },
                             isRequired: true,
                           ),
@@ -118,7 +159,9 @@ class _FormInputState extends State<FormInput> {
                             initialDate:
                                 DateTime.now().add(const Duration(days: 20)),
                             onChanged: (date) {
-                              print('Selected Date: $date');
+                              setState(() {
+                                _incidentDate = date;
+                              });
                             },
                           ),
                           BuildDropdown(
@@ -130,14 +173,18 @@ class _FormInputState extends State<FormInput> {
                               setState(() {
                                 selectedHospital = selectedValue;
                               });
-                              print('Selected: $selectedValue');
                             },
                             isRequired: true,
                           ),
-                          const BuildField(
-                            title: 'Photo',
-                            hintText: '',
-                            prefixIcon: Icon(Icons.photo),
+                          BuildPhotoField(
+                            imageFile: _imageFile,
+                            isRequired:
+                                true, // Tambahkan indikator required jika dibutuhkan
+                            onImageSelected: (File? image) {
+                              setState(() {
+                                _imageFile = image;
+                              });
+                            },
                           ),
                         ]
                             .expand((widget) =>
@@ -152,10 +199,22 @@ class _FormInputState extends State<FormInput> {
                       title: 'Kirim Laporan',
                       onTap: () {
                         // Add your submit report logic here
-                        // You can check if selectedHospital == '-' to treat it as null
-                        final hospitalValue =
-                            selectedHospital == '-' ? null : selectedHospital;
-                        print('Selected hospital value: $hospitalValue');
+                        final formData = {
+                          'name': _nameController.text,
+                          'age': _ageController.text,
+                          'description': _descController.text,
+                          'arrival_date': _arrivalDate?.toIso8601String(),
+                          'status': _status,
+                          'mechanism': _mechanismController.text,
+                          'injury': _injuryController.text,
+                          'treatment': _treatmentController.text,
+                          'case': _case,
+                          'incident_date': _incidentDate?.toIso8601String(),
+                          'hospital':
+                              selectedHospital == '-' ? null : selectedHospital,
+                          'photo_path': _imageFile?.path.split('/').last,
+                        };
+                        log('Form Data: $formData');
                       },
                     ),
                   ),
@@ -165,7 +224,6 @@ class _FormInputState extends State<FormInput> {
     );
   }
 
-  // Modified _getHospital method to always include '-' option
   _getHospital() async {
     try {
       final hospitalsList =
@@ -176,9 +234,8 @@ class _FormInputState extends State<FormInput> {
       setState(() {
         isLoading = false;
         if (hospitalsList.isNotEmpty) {
-          // Add '-' at the beginning of the list
           hospitals = ['-', ...hospitalsList];
-          selectedHospital = '-'; // Set default to '-'
+          selectedHospital = '-';
         } else {
           hospitals = ['-'];
           selectedHospital = '-';
