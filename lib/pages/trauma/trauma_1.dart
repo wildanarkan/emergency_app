@@ -14,7 +14,7 @@ class Trauma1 extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(
         context: context,
-        title: 'Prenotifikasi Pasien Trauma',
+        title: 'Prenotifikasi Trauma',
         enableBackButton: true,
       ),
       body: Container(
@@ -27,7 +27,7 @@ class Trauma1 extends StatelessWidget {
                   SizedBox(height: 20),
                   Text(
                     'Pastikan apakah ada salah satu keadaan ini pada pasien',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 20),
                   BuildKriteria(),

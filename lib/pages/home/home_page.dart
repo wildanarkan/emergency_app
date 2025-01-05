@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                     title: 'Kasus Non Trauma',
                     height: 100,
                     center: true,
-                    onTap: () => context.pushNamed(AppRoute.nonTrauma.name!),
+                    onTap: () => context.pushNamed(AppRoute.nonTrauma1.name!),
                   ),
                 ),
               ],

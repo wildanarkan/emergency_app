@@ -22,7 +22,7 @@ Widget buildButtonOption({
         ),
       ],
       if (option2 != null) ...[
-        const SizedBox(width: 16),
+        const SizedBox(width: 4),
         Expanded(
           child: BuildBox(
             backgroundColor: Colors.blueAccent,
@@ -34,7 +34,7 @@ Widget buildButtonOption({
         ),
       ],
       if (option3 != null) ...[
-        const SizedBox(width: 16),
+        const SizedBox(width: 4),
         Expanded(
           child: BuildBox(
             backgroundColor: Colors.blueAccent,

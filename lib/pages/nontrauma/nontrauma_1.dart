@@ -1,6 +1,10 @@
-import 'package:emergency_app/pages/nontrauma/nontrauma_2.dart';
+import 'package:emergency_app/core/route/AppRoute.dart';
+import 'package:emergency_app/data/model/button_option_model.dart';
+import 'package:emergency_app/data/model/non_trauma_model.dart';
+import 'package:emergency_app/widgets/build_app_bar.dart';
+import 'package:emergency_app/widgets/build_button_option.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class Nontrauma1 extends StatefulWidget {
   const Nontrauma1({super.key});
@@ -10,62 +14,55 @@ class Nontrauma1 extends StatefulWidget {
 }
 
 class _Nontrauma1State extends State<Nontrauma1> {
-  String? _selectedOption;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pertanyaan'),
+      appBar: buildAppBar(
+        context: context,
+        title: 'Prenotifikasi Non Trauma',
+        enableBackButton: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Container(
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Apakah pasien mengkonsumsi anti koagulan? (Caumadine, Warfarin, Pradaxa, dll)',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            const Expanded(
+              child: Column(
+                children: [
+                  SizedBox(height: 20),
+                  Text(
+                    'Apakah pasien mengkonsumsi anti koagulan? (Caumadine, Warfarin, Pradaxa, dll)',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 16),
-            RadioListTile<String>(
-              title: const Text('Ya'),
-              value: 'ya',
-              groupValue: _selectedOption,
-              onChanged: (value) {
-                setState(() {
-                  _selectedOption = value;
-                });
-              },
-            ),
-            RadioListTile<String>(
-              title: const Text('Tidak'),
-              value: 'tidak',
-              groupValue: _selectedOption,
-              onChanged: (value) {
-                setState(() {
-                  _selectedOption = value;
-                });
-              },
-            ),
-            RadioListTile<String>(
-              title: const Text('Tidak Tahu'),
-              value: 'tidak_tahu',
-              groupValue: _selectedOption,
-              onChanged: (value) {
-                setState(() {
-                  _selectedOption = value;
-                });
-              },
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () => Get.to(() => const Nontrauma2()),
-              child: const Text('Simpan'),
+            buildButtonOption(
+              option1: ButtonOptionModel(
+                title: 'Ya',
+                onTap: () => _openNextPage(context: context, koagulan: 1),
+              ),
+              option2: ButtonOptionModel(
+                title: 'Tidak Tahu',
+                onTap: () => _openNextPage(context: context, koagulan: 0),
+              ),
+              option3: ButtonOptionModel(
+                title: 'Tidak',
+                onTap: () => _openNextPage(context: context, koagulan: 2),
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _openNextPage({
+    required BuildContext context,
+    required int koagulan,
+  }) {
+    final data = NonTraumaModel(koagulan: koagulan);
+    context.pushNamed(AppRoute.nonTrauma2.name!, extra: data);
   }
 }

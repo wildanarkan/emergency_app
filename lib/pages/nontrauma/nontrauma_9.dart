@@ -6,16 +6,16 @@ import 'package:emergency_app/widgets/build_button_option.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class Nontrauma8 extends StatefulWidget {
+class Nontrauma9 extends StatefulWidget {
   final NonTraumaModel data;
 
-  const Nontrauma8({super.key, required this.data});
+  const Nontrauma9({super.key, required this.data});
 
   @override
-  State<Nontrauma8> createState() => _Nontrauma8State();
+  State<Nontrauma9> createState() => _Nontrauma9State();
 }
 
-class _Nontrauma8State extends State<Nontrauma8> {
+class _Nontrauma9State extends State<Nontrauma9> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +34,7 @@ class _Nontrauma8State extends State<Nontrauma8> {
                 children: [
                   SizedBox(height: 20),
                   Text(
-                    'Apakah pasien mengalami deviasi gaze utntuk mata yang sebelahnya?',
+                    'Tanyakan pada pasien "Apakah merasa lemah pada bagian tubuh tertentu"',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 40),
@@ -44,27 +44,17 @@ class _Nontrauma8State extends State<Nontrauma8> {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    'Tidak ada kelainan, mata bergerak ke kedua sisi',
+                    'Pasien Mengatakan ya dan menunjukkan bagian tubuh yang lemah',
                     style: TextStyle(fontSize: 18),
                   ),
                   SizedBox(height: 40),
                   Text(
-                    'Gaze preference',
+                    'Abnormal',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 5),
                   Text(
-                    'Pasien mengalami kesulitan jika melihat ke salah satu mata (kiri atau kanan)',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  SizedBox(height: 40),
-                  Text(
-                    'Deviasi Forced',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    'Pasien mengalami gangguan ke satu sisi dan tidak bergerak kesiisi lain (tidak dapat mengikuti jari)',
+                    'Pasien tidak dapat menunjukkan bagian tubuh yang mengalami kelemahan',
                     style: TextStyle(fontSize: 18),
                   ),
                 ],
@@ -76,12 +66,8 @@ class _Nontrauma8State extends State<Nontrauma8> {
                 onTap: () => _openNextPage(context: context, point: 0),
               ),
               option2: ButtonOptionModel(
-                title: 'Gaze',
+                title: 'Abnormal',
                 onTap: () => _openNextPage(context: context, point: 1),
-              ),
-              option3: ButtonOptionModel(
-                title: 'Deviasi',
-                onTap: () => _openNextPage(context: context, point: 2),
               ),
             ),
           ],
@@ -97,6 +83,6 @@ class _Nontrauma8State extends State<Nontrauma8> {
     final lastPoint = widget.data.poin ?? 0;
     final updatePoint = lastPoint + point;
     final data = widget.data.copyWith(poin: updatePoint);
-    context.pushNamed(AppRoute.nonTrauma9.name!, extra: data);
+    context.pushNamed(AppRoute.nonTrauma10.name!, extra: data);
   }
 }
