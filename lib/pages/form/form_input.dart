@@ -37,7 +37,7 @@ class _FormInputState extends State<FormInput> {
   DateTime? _arrivalDate;
   DateTime? _incidentDate;
   String _status = 'Menuju RS';
-  String _case = 'Trauma';
+  String _case = 'Pria';
 
   @override
   void initState() {
@@ -76,79 +76,38 @@ class _FormInputState extends State<FormInput> {
                         children: [
                           BuildField(
                             title: 'Name',
-                            hintText: 'Ahmad Faisal',
+                            hintText: 'tidak wajib',
                             controller: _nameController,
                           ),
-                          BuildField(
-                            title: 'Age',
-                            hintText: '19',
-                            keyboardType: TextInputType.number,
-                            controller: _ageController,
-                          ),
-                          BuildField(
-                            title: 'Desc',
-                            hintText: 'Permintaan atau pesan khusus',
-                            maxLines: 4,
-                            controller: _descController,
-                          ),
-                          BuildDate(
-                            title: 'Arrival',
-                            hintText: 'Waktu Kedatangan',
-                            firstDate: DateTime.now(),
-                            lastDate:
-                                DateTime.now().add(const Duration(days: 40)),
-                            initialDate:
-                                DateTime.now().add(const Duration(days: 20)),
-                            onChanged: (date) {
-                              setState(() {
-                                _arrivalDate = date;
-                              });
-                            },
-                          ),
-                          BuildDropdown(
-                            title: 'Status',
-                            hintText: 'Choose something',
-                            items: const [
-                              'Selesai',
-                              'Menuju RS',
+                          Row(
+                            children: [
+                              Expanded(
+                                child: BuildField(
+                                  title: 'Age',
+                                  hintText: '19',
+                                  keyboardType: TextInputType.number,
+                                  controller: _ageController,
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: BuildDropdown(
+                                  title: 'Jenis Kelamin',
+                                  hintText: 'Choose something',
+                                  items: const [
+                                    'Pria',
+                                    'Wanita',
+                                  ],
+                                  selectedItem: _case,
+                                  onChanged: (selectedValue) {
+                                    setState(() {
+                                      _case = selectedValue ?? 'Pria';
+                                    });
+                                  },
+                                  isRequired: true,
+                                ),
+                              ),
                             ],
-                            selectedItem: _status,
-                            onChanged: (selectedValue) {
-                              setState(() {
-                                _status = selectedValue ?? 'Menuju RS';
-                              });
-                            },
-                            isRequired: true,
-                          ),
-                          BuildField(
-                            title: 'Mechanism',
-                            hintText: 'Mekanis Cedera',
-                            controller: _mechanismController,
-                          ),
-                          BuildField(
-                            title: 'Injury',
-                            hintText: 'Cedera yang dialami',
-                            controller: _injuryController,
-                          ),
-                          BuildField(
-                            title: 'Treatment',
-                            hintText: 'Tindakan yang di lakukan',
-                            controller: _treatmentController,
-                          ),
-                          BuildDropdown(
-                            title: 'Case',
-                            hintText: 'Choose something',
-                            items: const [
-                              'Trauma',
-                              'Non Trauma',
-                            ],
-                            selectedItem: _case,
-                            onChanged: (selectedValue) {
-                              setState(() {
-                                _case = selectedValue ?? 'Trauma';
-                              });
-                            },
-                            isRequired: true,
                           ),
                           BuildDate(
                             title: 'Time Incident',
@@ -164,6 +123,76 @@ class _FormInputState extends State<FormInput> {
                               });
                             },
                           ),
+                          BuildField(
+                            title: 'Mechanism',
+                            hintText: 'Derop down (pilihan 5)',
+                            controller: _mechanismController,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: BuildField(
+                                  title: 'Injury',
+                                  hintText: 'Cedera yang dialami',
+                                  controller: _injuryController,
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: BuildPhotoField(
+                                  imageFile: _imageFile,
+                                  isRequired:
+                                      true, // Tambahkan indikator required jika dibutuhkan
+                                  onImageSelected: (File? image) {
+                                    setState(() {
+                                      _imageFile = image;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                          BuildField(
+                            title: 'Symptom',
+                            hintText: 'input free text 4 (child)',
+                            maxLines: 4,
+                            controller: _descController,
+                          ),
+                          BuildField(
+                            title: 'Treatment',
+                            hintText: 'Tindakan yang di lakukan',
+                            controller: _treatmentController,
+                          ),
+                          BuildDate(
+                            title: 'Estimate Time of Arrival',
+                            hintText: 'Waktu Kedatangan',
+                            firstDate: DateTime.now(),
+                            lastDate:
+                                DateTime.now().add(const Duration(days: 40)),
+                            initialDate:
+                                DateTime.now().add(const Duration(days: 20)),
+                            onChanged: (date) {
+                              setState(() {
+                                _arrivalDate = date;
+                              });
+                            },
+                          ),
+                          // BuildDropdown(
+                          //   title: 'Status',
+                          //   hintText: 'Choose something',
+                          //   items: const [
+                          //     'Selesai',
+                          //     'Menuju RS',
+                          //   ],
+                          //   selectedItem: _status,
+                          //   onChanged: (selectedValue) {
+                          //     setState(() {
+                          //       _status = selectedValue ?? 'Menuju RS';
+                          //     });
+                          //   },
+                          //   isRequired: true,
+                          // ),
+
                           BuildDropdown(
                             title: 'Hospital',
                             hintText: 'Choose something',
@@ -175,16 +204,6 @@ class _FormInputState extends State<FormInput> {
                               });
                             },
                             isRequired: true,
-                          ),
-                          BuildPhotoField(
-                            imageFile: _imageFile,
-                            isRequired:
-                                true, // Tambahkan indikator required jika dibutuhkan
-                            onImageSelected: (File? image) {
-                              setState(() {
-                                _imageFile = image;
-                              });
-                            },
                           ),
                         ]
                             .expand((widget) =>
