@@ -31,6 +31,7 @@ class HttpBuilder {
 
       final finalPath = finalSegments.join('/');
       final uri = Uri.https(authority, finalPath, query);
+      // final uri = Uri.http(authority, finalPath, query);
       return uri;
     });
 
@@ -43,6 +44,7 @@ class HttpBuilder {
     Map<String, String>? headers,
   }) {
     final baseUrl = Future<String>.value('cacing.cloud/api/');
+    // final baseUrl = Future<String>.value('192.168.1.102:8000/api/');
     return _buildClient(baseUrl, path, query, headers);
   }
 }

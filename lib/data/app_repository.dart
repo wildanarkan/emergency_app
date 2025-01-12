@@ -25,7 +25,7 @@ class AppRepository {
     final token = sharedPreferences.getString(Constant.tokenKey);
     return _appNetwork.logout(token: token ?? '');
   }
-  
+
   Future<GetHospitalResponse> getHospital() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     final token = sharedPreferences.getString(Constant.tokenKey);
@@ -37,34 +37,34 @@ class AppRepository {
     required String name,
     required int age,
     required int gender,
-    required String desc,
-    required String arrival,
-    required int status,
+    required String timeIncident,
     required String mechanism,
     required String injury,
-    required String treatment,
-    required int caseType,
-    required String timeIncident,
-    required String hospitalId,
-    required int userId,
     File? photoInjury,
+    required String symptom,
+    required String arrival,
+    required int status,
+    required String treatment,
+    required int? hospitalId,
+    required String request,
+    required int caseType,
   }) {
     return _appNetwork.addPatient(
       token: token,
       name: name,
       age: age,
       gender: gender,
-      desc: desc,
-      arrival: arrival,
-      status: status,
+      timeIncident: timeIncident,
       mechanism: mechanism,
       injury: injury,
-      treatment: treatment,
-      caseType: caseType,
-      timeIncident: timeIncident,
-      hospitalId: hospitalId,
-      userId: userId,
       photoInjury: photoInjury,
+      symptom: symptom,
+      arrival: arrival,
+      status: status,
+      treatment: treatment,
+      hospitalId: hospitalId,
+      request: request,
+      caseType: caseType,
     );
   }
 }

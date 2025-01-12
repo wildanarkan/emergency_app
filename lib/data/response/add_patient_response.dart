@@ -54,7 +54,6 @@ class Data {
 		timeIncident = json['time_incident'];
 		hospitalId = json['hospital_id'];
 		photoInjury = json['photo_injury'];
-		userId = json['user_id'];
 		updatedAt = json['updated_at'];
 		createdAt = json['created_at'];
 		id = json['id'];
@@ -75,7 +74,6 @@ class Data {
 		data['time_incident'] = timeIncident;
 		data['hospital_id'] = hospitalId;
 		data['photo_injury'] = photoInjury;
-		data['user_id'] = userId;
 		data['updated_at'] = updatedAt;
 		data['created_at'] = createdAt;
 		data['id'] = id;
