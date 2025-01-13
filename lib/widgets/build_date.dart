@@ -9,6 +9,8 @@ class BuildDate extends StatelessWidget {
   final DateTime initialDate;
   final void Function(DateTime?) onChanged;
   final bool isRequired;
+  final String? errorText; // Add error text property
+  final bool showError; // Add show error property
 
   const BuildDate({
     super.key,
@@ -19,6 +21,8 @@ class BuildDate extends StatelessWidget {
     required this.initialDate,
     required this.onChanged,
     this.isRequired = false,
+    this.errorText,
+    this.showError = false,
   });
 
   @override
@@ -50,72 +54,65 @@ class BuildDate extends StatelessWidget {
             ],
           ),
         ),
-        // DateTime Field Section
-        Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.1),
-                spreadRadius: 1,
-                blurRadius: 3,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
-          child: DateTimeFormField(
-            decoration: InputDecoration(
-              suffixIcon: const SizedBox(),
-              hintText: hintText,
-              hintStyle: TextStyle(
-                color: Colors.grey[400],
-                fontSize: 16,
-              ),
-              prefixIcon: const Icon(Icons.calendar_today),
-              filled: true,
-              fillColor: Colors.white,
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 16,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide.none,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(
-                  color: Colors.black45,
-                  width: 1,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(
-                  color: Theme.of(context).primaryColor,
-                  width: 1,
-                ),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(
-                  color: Colors.red,
-                  width: 1,
-                ),
-              ),
-              focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(
-                  color: Colors.red,
-                  width: 1,
-                ),
+        DateTimeFormField(
+          decoration: InputDecoration(
+            suffixIcon: const SizedBox(),
+            hintText: hintText,
+            hintStyle: TextStyle(
+              color: Colors.grey[400],
+              fontSize: 16,
+            ),
+            prefixIcon: const Icon(Icons.calendar_today),
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 16,
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide.none,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: showError ? Colors.red : Colors.black45,
+                width: 1,
               ),
             ),
-            firstDate: firstDate,
-            lastDate: lastDate,
-            initialPickerDateTime: initialDate,
-            mode: DateTimeFieldPickerMode.dateAndTime,
-            onChanged: onChanged,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color:
+                    showError ? Colors.red : Theme.of(context).primaryColor,
+                width: 1,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(
+                color: Colors.red,
+                width: 1,
+              ),
+            ),
+            errorStyle: const TextStyle(
+              color: Colors.red,
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(
+                color: Colors.red,
+                width: 1,
+              ),
+            ),
+            errorText:
+                showError ? (errorText ?? 'Field ini harus diisi') : null,
           ),
+          firstDate: firstDate,
+          lastDate: lastDate,
+          initialPickerDateTime: initialDate,
+          mode: DateTimeFieldPickerMode.dateAndTime,
+          onChanged: onChanged,
         ),
       ],
     );

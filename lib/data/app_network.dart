@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:emergency_app/core/http/http_builder.dart';
@@ -46,6 +47,7 @@ class AppNetwork {
   }) async {
     final payload = {'Authorization': 'Bearer $token'};
     final response = await _http.build(path: _hospital, headers: payload).get();
+    log(response.body.toString());
     final jsonResponse = json.decode(response.body);
     final responseModel = GetHospitalResponse.fromJson(jsonResponse);
     return responseModel;
@@ -56,70 +58,67 @@ class AppNetwork {
     required String name,
     required int age,
     required int gender,
-    required String desc,
-    required String arrival,
-    required int status,
+    required String timeIncident,
     required String mechanism,
     required String injury,
-    required String treatment,
-    required int caseType,
-    required String timeIncident,
-    required String hospitalId,
-    required int userId,
     File? photoInjury,
+    required String symptom,
+    required String arrival,
+    required int status,
+    required String treatment,
+    required int? hospitalId,
+    required String request,
+    required int caseType,
   }) async {
     final headers = {'Authorization': 'Bearer $token'};
 
     if (photoInjury != null) {
-      // Handle multipart request when photo is present
       final fields = {
         'name': name.toString(),
         'age': age.toString(),
         'gender': gender.toString(),
-        'desc': desc,
-        'arrival': arrival,
-        'status': status.toString(),
+        'time_incident': timeIncident,
         'mechanism': mechanism,
         'injury': injury,
+        'symptom': symptom,
+        'arrival': arrival,
+        'status': status.toString(),
         'treatment': treatment,
+        if (hospitalId != null) 'hospital_id': hospitalId.toString(),
+        'request': request,
         'case': caseType.toString(),
-        'time_incident': timeIncident,
-        'hospital_id': hospitalId,
-        'user_id': userId.toString(),
       };
 
-      // Create multipart file
+      log(fields.toString());
+
       final photoFile = await http.MultipartFile.fromPath(
           'photo_injury', photoInjury.path,
           filename: photoInjury.path.split('/').last);
 
-      // Use existing postMultipart method
       final streamedResponse =
           await _http.build(path: _patient, headers: headers).postMultipart(
         fields: fields,
         files: [photoFile],
       );
 
-      // Convert StreamedResponse to normal response
       final response = await http.Response.fromStream(streamedResponse);
       final jsonResponse = json.decode(response.body);
       return AddPatientResponse.fromJson(jsonResponse);
     } else {
-      // Handle normal JSON request when no photo
       final payload = {
         'name': name,
         'age': age,
         'gender': gender,
-        'desc': desc,
-        'arrival': arrival,
-        'status': status,
+        'time_incident': timeIncident,
         'mechanism': mechanism,
         'injury': injury,
+        'symptom': symptom,
+        'arrival': arrival,
+        'status': status,
         'treatment': treatment,
+        if (hospitalId != null) 'hospital_id': hospitalId,
+        'request': request,
         'case': caseType,
-        'time_incident': timeIncident,
-        'hospital_id': hospitalId,
-        'user_id': userId,
       };
 
       final response =
