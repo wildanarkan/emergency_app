@@ -350,6 +350,7 @@ class _FormInputState extends State<FormInput> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 16),
                   buildButtonOption(
                     option1: ButtonOptionModel(
                       title: 'Kirim Laporan',

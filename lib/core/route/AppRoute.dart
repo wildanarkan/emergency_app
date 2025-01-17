@@ -15,8 +15,7 @@ import 'package:emergency_app/pages/nontrauma/nontrauma_6.dart';
 import 'package:emergency_app/pages/nontrauma/nontrauma_7.dart';
 import 'package:emergency_app/pages/nontrauma/nontrauma_8.dart';
 import 'package:emergency_app/pages/nontrauma/nontrauma_9.dart';
-import 'package:emergency_app/pages/result/result_1.dart';
-import 'package:emergency_app/pages/result/result_2.dart';
+import 'package:emergency_app/pages/nontrauma/nontrauma_result.dart';
 import 'package:emergency_app/pages/trauma/trauma_1.dart';
 import 'package:emergency_app/pages/trauma/trauma_2.dart';
 import 'package:emergency_app/pages/trauma/trauma_3.dart';
@@ -35,7 +34,6 @@ class AppRoute {
       trauma2,
       trauma3,
       trauma4,
-      traumaResult,
       traumaNo,
       nonTrauma1,
       nonTrauma2,
@@ -103,12 +101,6 @@ class AppRoute {
     name: 'traumaNo',
     path: '/traumaNo',
     builder: (context, state) => const TraumaNo(),
-  );
-
-  static final traumaResult = GoRoute(
-    name: 'traumaResult',
-    path: '/traumaResult',
-    builder: (context, state) => const Result1(),
   );
 
   // =========================================================== Non Trauma
@@ -202,7 +194,10 @@ class AppRoute {
   static final nonTraumaResult = GoRoute(
     name: 'nonTraumaResult',
     path: '/nonTraumaResult',
-    builder: (context, state) => const Result2(),
+    builder: (context, state) {
+      final data = state.extra as NonTraumaModel;
+      return NontraumaResult(data: data);
+    },
   );
 
   // =========================================================== Form Inout

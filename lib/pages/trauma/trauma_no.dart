@@ -3,7 +3,6 @@ import 'package:emergency_app/data/model/button_option_model.dart';
 import 'package:emergency_app/widgets/build_app_bar.dart';
 import 'package:emergency_app/widgets/build_button_option.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class TraumaNo extends StatefulWidget {
   const TraumaNo({super.key});
@@ -40,8 +39,11 @@ class _TraumaNoState extends State<TraumaNo> {
             const Expanded(child: SizedBox()),
             buildButtonOption(
               option1: ButtonOptionModel(
-                title: 'Buat Laporan',
-                onTap: () => context.pushNamed(AppRoute.formInput.name!),
+                title: 'Kembali ke Home',
+                onTap: () {
+                  Navigator.popUntil(
+                      context, ModalRoute.withName(AppRoute.home.name!));
+                },
               ),
             ),
           ],
