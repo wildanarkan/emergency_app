@@ -2,6 +2,7 @@ import 'package:emergency_app/core/route/AppRoute.dart';
 import 'package:emergency_app/data/model/button_option_model.dart';
 import 'package:emergency_app/widgets/build_app_bar.dart';
 import 'package:emergency_app/widgets/build_button_option.dart';
+import 'package:emergency_app/widgets/build_description_point.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,19 +29,36 @@ class _Trauma4State extends State<Trauma4> {
           children: [
             const SizedBox(height: 20),
             const Text(
-              'Lanjutkan dengan prenotifikasi ke IGD RSUD minimal tipe C',
+              'Tentukan adanya salah satu pertimbangan khusus',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
-            const Text(
-              'Daftar Rumah Sakit Tujuan',
-              style: TextStyle(fontSize: 20),
+            const SizedBox(height: 32),
+            const BuildDescriptionPoint(
+              value:
+                  'Usia > 65 tahun dengan cedera kepala dengan impact yang signifikan.',
+            ),
+            const SizedBox(height: 8),
+            const BuildDescriptionPoint(
+              value:
+                  'Penggunaan anti koagulan / anti trombosit atau gangguan perdarahan dengan cedera kepala / badan yang signifikan.',
+            ),
+            const SizedBox(height: 8),
+            const BuildDescriptionPoint(
+              value: 'Korban hamil > 20 minggu.',
+            ),
+            const BuildDescriptionPoint(
+              value:
+                  'Keluhan lain berdasarkan pertimbangan petugas prehospital.',
             ),
             const Expanded(child: SizedBox()),
             buildButtonOption(
               option1: ButtonOptionModel(
-                title: 'Buat Laporan',
+                title: 'Ya',
                 onTap: () => context.pushNamed(AppRoute.formInput.name!),
+              ),
+              option2: ButtonOptionModel(
+                title: 'Tidak',
+                onTap: () => context.pushNamed(AppRoute.traumaNo.name!),
               ),
             ),
           ],

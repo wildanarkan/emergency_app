@@ -15,24 +15,20 @@ class LoginPage extends StatelessWidget {
     final passwordController = TextEditingController();
 
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.all(0),
+      resizeToAvoidBottomInset: false,
+      body: Column(
         children: [
           Image.asset('assets/emergency_ambulance.jpg'),
+          const SizedBox(height: 100),
           Container(
-            padding: const EdgeInsets.all(20),
+            margin: const EdgeInsets.all(40),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'LOGIN',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
-                ),
                 TextField(
                   controller: emailController,
                   decoration: const InputDecoration(hintText: 'Email'),
                 ),
+                const SizedBox(height: 10),
                 TextField(
                   controller: passwordController,
                   obscureText: true,
@@ -41,25 +37,34 @@ class LoginPage extends StatelessWidget {
                     suffixIcon: Icon(Icons.remove_red_eye),
                   ),
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: const ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(Colors.grey)),
-                    onPressed: () => _handleLogin(
-                      context: context,
-                      email: emailController.text,
-                      password: passwordController.text,
+                const SizedBox(height: 60),
+                InkWell(
+                  onTap: () => _handleLogin(
+                    context: context,
+                    email: emailController.text,
+                    password: passwordController.text,
+                  ),
+                  child: Container(
+                    height: 40,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: Colors.blueAccent,
                     ),
-                    child: const Text(
-                      'Masuk',
-                      style: TextStyle(color: Colors.white),
+                    child: const Center(
+                      child: Text(
+                        'Masuk',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
