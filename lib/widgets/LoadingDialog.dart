@@ -119,7 +119,7 @@ class CommonLoadingWidget extends StatelessWidget {
             children: [
               CircularProgressIndicator(
                 color: Colors.blueAccent,
-                strokeWidth: 12,
+                strokeWidth: 4,
               ),
               Text('Loading'),
             ],
