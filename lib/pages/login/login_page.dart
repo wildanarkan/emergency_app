@@ -95,7 +95,7 @@ void _handleLogin({
         );
   }).then((response) {
     if (!context.mounted) return;
-    if (response.data == null) {
+    if (response.code != 200) {
       showSnackBar(context, response.message);
       return;
     }
