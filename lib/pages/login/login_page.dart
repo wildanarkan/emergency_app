@@ -6,14 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
+  State<LoginPage> createState() => LoginPageState();
+}
 
+class LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  bool _obscureText = true;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -31,10 +37,16 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 10),
                 TextField(
                   controller: passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
+                  obscureText: _obscureText,
+                  decoration: InputDecoration(
                     hintText: 'Password',
-                    suffixIcon: Icon(Icons.remove_red_eye),
+                    suffixIcon: InkWell(
+                        onTap: () {
+                          setState(() {
+                            _obscureText = !_obscureText;
+                          });
+                        },
+                        child: const Icon(Icons.remove_red_eye)),
                   ),
                 ),
                 const SizedBox(height: 60),
@@ -83,7 +95,7 @@ void _handleLogin({
         );
   }).then((response) {
     if (!context.mounted) return;
-    if (response.code != 200) {
+    if (response.data == null) {
       showSnackBar(context, response.message);
       return;
     }
