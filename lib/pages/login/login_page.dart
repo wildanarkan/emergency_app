@@ -25,7 +25,40 @@ class LoginPageState extends State<LoginPage> {
       body: Column(
         children: [
           Image.asset('assets/emergency_ambulance.jpg'),
-          const SizedBox(height: 100),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  // color: Colors.red,
+                  child: Image.asset(
+                    'assets/logo_sipongga.png',
+                    height: 100,
+                  ),
+                ),
+              ),
+              const Expanded(
+                flex: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'SIPONGGA',
+                      style: TextStyle(color: Colors.black, fontSize: 30),
+                    ),
+                    Text(
+                      'SISTEM PRENOTIFICATION',
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                    Text(
+                      'REJANG LEBONG-AIRLANGGA',
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
           Container(
             margin: const EdgeInsets.all(40),
             child: Column(

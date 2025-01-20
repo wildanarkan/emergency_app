@@ -163,7 +163,7 @@ class _FormInputState extends State<FormInput> {
     return Scaffold(
       appBar: buildAppBar(
         context: context,
-        title: 'Buat Laporan',
+        title: 'Isi format data prenotification',
         enableBackButton: true,
       ),
       body: Container(

@@ -17,7 +17,7 @@ class _TraumaNoState extends State<TraumaNo> {
     return Scaffold(
       appBar: buildAppBar(
         context: context,
-        title: 'Prenotifikasi Trauma',
+        title: 'Prenotification',
         enableBackButton: true,
       ),
       body: Container(
@@ -27,7 +27,7 @@ class _TraumaNoState extends State<TraumaNo> {
           children: [
             const SizedBox(height: 20),
             const Text(
-              'Bukan indikasi untuk prenotifikasi',
+              'Bukan indikasi untuk prenotification',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),

@@ -21,7 +21,7 @@ class _Nontrauma7State extends State<Nontrauma7> {
     return Scaffold(
       appBar: buildAppBar(
         context: context,
-        title: 'Prenotifikasi Non Trauma',
+        title: 'Prenotification Non Trauma',
         enableBackButton: true,
       ),
       body: Container(

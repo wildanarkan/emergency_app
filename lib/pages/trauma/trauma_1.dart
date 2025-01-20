@@ -14,7 +14,7 @@ class Trauma1 extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(
         context: context,
-        title: 'Prenotifikasi Trauma',
+        title: 'Prenotification',
         enableBackButton: true,
       ),
       body: Container(
