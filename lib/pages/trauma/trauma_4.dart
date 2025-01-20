@@ -19,7 +19,7 @@ class _Trauma4State extends State<Trauma4> {
     return Scaffold(
       appBar: buildAppBar(
         context: context,
-        title: 'Prenotifikasi Trauma',
+        title: 'Prenotification',
         enableBackButton: true,
       ),
       body: Container(
@@ -48,7 +48,7 @@ class _Trauma4State extends State<Trauma4> {
             ),
             const BuildDescriptionPoint(
               value:
-                  'Keluhan lain berdasarkan pertimbangan petugas prehospital.',
+                  'Keluhan lain berdasarkan pertimbangan petugas prehospital (Identifikasi keluhan lain yang belum masuk dalam nyeri dada hebat, nyeri kepala hebat pasien dibawah pengaruh obat)',
             ),
             const Expanded(child: SizedBox()),
             buildButtonOption(

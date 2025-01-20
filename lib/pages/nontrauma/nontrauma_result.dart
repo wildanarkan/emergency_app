@@ -34,7 +34,7 @@ class _NontraumaResultState extends State<NontraumaResult> {
             const SizedBox(height: 20),
             if (point <= 4) ...[
               const Text(
-                'Bukan indikasi untuk prenotifikasi',
+                'Bukan indikasi untuk prenotification',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
@@ -61,13 +61,13 @@ class _NontraumaResultState extends State<NontraumaResult> {
               ),
               const SizedBox(height: 16),
               const Text(
-                'Segera lanjutkan proses dengan mengisi form prenotifikasi',
+                'Segera lanjutkan proses dengan mengisi form prenotification',
                 style: TextStyle(fontSize: 20),
               ),
               const Expanded(child: SizedBox()),
               buildButtonOption(
                 option1: ButtonOptionModel(
-                  title: 'Buat Laporan',
+                  title: 'Isi format data prenotification',
                   onTap: () => context.pushNamed(AppRoute.formInput.name!),
                 ),
               ),

@@ -35,7 +35,7 @@ class _Result1State extends State<Result1> {
           ),
           const BuildBox(
             title:
-                'Lanjutkan dengan prenotifikasi ke IGD RSUD minimal tipe C, dengan keterangan perlu Tindakan akut stroke',
+                'Lanjutkan dengan prenotification ke IGD RSUD minimal tipe C, dengan keterangan perlu Tindakan akut stroke',
             backgroundColor: Colors.red,
           ),
           BuildBox(

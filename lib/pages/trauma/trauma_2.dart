@@ -19,7 +19,7 @@ class _Trauma2State extends State<Trauma2> {
     return Scaffold(
       appBar: buildAppBar(
         context: context,
-        title: 'Prenotifikasi Trauma',
+        title: 'Prenotification',
         enableBackButton: true,
       ),
       body: Container(
@@ -39,7 +39,7 @@ class _Trauma2State extends State<Trauma2> {
             ),
             const SizedBox(height: 8),
             const BuildDescriptionPoint(
-              value: 'Deformita dinding dada, seperti flail chest.',
+              value: 'Deformitas dinding dada, seperti flail chest.',
             ),
             const SizedBox(height: 8),
             const BuildDescriptionPoint(

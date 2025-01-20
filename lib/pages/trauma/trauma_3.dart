@@ -19,50 +19,60 @@ class _Trauma3State extends State<Trauma3> {
     return Scaffold(
       appBar: buildAppBar(
         context: context,
-        title: 'Prenotifikasi Trauma',
+        title: 'Prenotification',
         enableBackButton: true,
       ),
       body: Container(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const SizedBox(height: 20),
-            const Text(
-              'Tentukan adanya salah satu mekanisme cidera berikut ini',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            const Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 20),
+                    Text(
+                      'Tentukan adanya salah satu mekanisme cidera berikut ini',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 32),
+                    BuildDescriptionPoint(
+                      value: 'Jatuh dari ketinggian 3 meter, pada pasien anak 2-3 x TB',
+                    ),
+                    SizedBox(height: 8),
+                    BuildDescriptionPoint(
+                      value: 'Kecelakaan mobil dengan potensi resiko tinggi :',
+                    ),
+                    BuildDescriptionPoint(
+                      value: 'Kerusakan bagian dalam mobil, terlempar keluar dari mobil',
+                      icon: Icons.check,
+                    ),
+                    BuildDescriptionPoint(
+                      value: 'Terlempar dari kendaraan',
+                      icon: Icons.check,
+                    ),
+                    BuildDescriptionPoint(
+                      value: 'Terdapat penumpang yang meninggal dalam mobil yang sama',
+                      icon: Icons.check,
+                    ),
+                    SizedBox(height: 8),
+                    BuildDescriptionPoint(
+                      value: 'Pengandara terlempar dari kendaraan (sepeda motor/sepeda) dengan dampak yang signifikan.',
+                    ),
+                    SizedBox(height: 8),
+                    BuildDescriptionPoint(
+                      value: 'Pejalan kaki atau pengendara sepeda tertabrak kendaraan dengan kecepatan 20 MPH (>32, 187 KM/ jam)',
+                    ),
+                    SizedBox(height: 8),
+                    BuildDescriptionPoint(
+                      value: 'Luka bakar dengan mekanisme trauma mendukung.',
+                    ),
+                  ],
+                ),
+              ),
             ),
-            const SizedBox(height: 32),
-            const BuildDescriptionPoint(
-              value:
-                  'Jatuh dari ketinggian 3 meter atau 2-3 kalo tinggi badan pada pasien anak.',
-            ),
-            const SizedBox(height: 8),
-            const BuildDescriptionPoint(
-              value:
-                  'Kecelakaan mobil resiko tinggi (kerusakan bagian dalam mobil).',
-            ),
-            const SizedBox(height: 8),
-            const BuildDescriptionPoint(
-              value: 'Terlempar dari mobil.',
-            ),
-            const BuildDescriptionPoint(
-              value: 'Terdapat penumpang yang meninggal dalam mobil yang sama.',
-            ),
-            const SizedBox(height: 8),
-            const BuildDescriptionPoint(
-              value:
-                  'Pengandara terlempar dari kendaraan (sepeda motor/sepeda) dengan dampak yang signifikan.',
-            ),
-            const SizedBox(height: 8),
-            const BuildDescriptionPoint(
-              value:
-                  'Pejalan kaki atau pengendara sepeda dengan kecepatan tertabrak kendaraan > 32 Km/Jam.',
-            ),
-            const SizedBox(height: 8),
-            const BuildDescriptionPoint(
-              value: 'Luka bakar dengan mekanisme trauma mendukung.',
-            ),
-            const Expanded(child: SizedBox()),
+            const SizedBox(height: 16),
             buildButtonOption(
               option1: ButtonOptionModel(
                 title: 'Ya',
