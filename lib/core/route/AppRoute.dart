@@ -215,6 +215,9 @@ class AppRoute {
   static final formInput = GoRoute(
     name: 'formInput',
     path: '/formInput',
-    builder: (context, state) => const FormInput(),
+    builder: (context, state) {
+      final hospitalId = state.extra as int;
+      return FormInput(hospitalId: hospitalId);
+    },
   );
 }
