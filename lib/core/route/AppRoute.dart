@@ -20,7 +20,7 @@ import 'package:emergency_app/pages/trauma/trauma_1.dart';
 import 'package:emergency_app/pages/trauma/trauma_2.dart';
 import 'package:emergency_app/pages/trauma/trauma_3.dart';
 import 'package:emergency_app/pages/trauma/trauma_4.dart';
-import 'package:emergency_app/pages/trauma/trauma_no.dart';
+import 'package:emergency_app/pages/trauma/trauma_result.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -34,7 +34,7 @@ class AppRoute {
       trauma2,
       trauma3,
       trauma4,
-      traumaNo,
+      traumaResult,
       nonTrauma1,
       nonTrauma2,
       nonTrauma3,
@@ -97,10 +97,13 @@ class AppRoute {
     builder: (context, state) => const Trauma4(),
   );
 
-  static final traumaNo = GoRoute(
-    name: 'traumaNo',
-    path: '/traumaNo',
-    builder: (context, state) => const TraumaNo(),
+  static final traumaResult = GoRoute(
+    name: 'traumaResult',
+    path: '/traumaResult',
+    builder: (context, state) {
+      final isPrenotif = state.extra as bool;
+      return TraumaResult(isPrenotif: isPrenotif);
+    },
   );
 
   // =========================================================== Non Trauma

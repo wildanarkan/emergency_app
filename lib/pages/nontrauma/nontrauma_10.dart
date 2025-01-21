@@ -84,12 +84,6 @@ class _Nontrauma10State extends State<Nontrauma10> {
     final lastPoint = widget.data.poin ?? 0;
     final updatePoint = lastPoint + point;
     final data = widget.data.copyWith(poin: updatePoint);
-
-    debugPrint('aim => koagulan: ${data.koagulan}');
-    debugPrint('aim => umur: ${data.umur}');
-    debugPrint('aim => lamaGejala: ${data.lamaGejala}');
-    debugPrint('aim => poin: ${data.poin}');
-
     context.pushNamed(AppRoute.nonTraumaResult.name!, extra: data);
   }
 }

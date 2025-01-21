@@ -43,7 +43,9 @@ class Trauma1 extends StatelessWidget {
             buildButtonOption(
               option1: ButtonOptionModel(
                 title: 'Ya',
-                onTap: () => context.pushNamed(AppRoute.formInput.name!),
+                onTap: () {
+                  context.pushNamed(AppRoute.traumaResult.name!, extra: true);
+                },
               ),
               option2: ButtonOptionModel(
                 title: 'Tidak',
