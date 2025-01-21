@@ -16,6 +16,7 @@ import 'package:emergency_app/pages/nontrauma/nontrauma_7.dart';
 import 'package:emergency_app/pages/nontrauma/nontrauma_8.dart';
 import 'package:emergency_app/pages/nontrauma/nontrauma_9.dart';
 import 'package:emergency_app/pages/nontrauma/nontrauma_result.dart';
+import 'package:emergency_app/pages/register/register_page.dart';
 import 'package:emergency_app/pages/trauma/trauma_1.dart';
 import 'package:emergency_app/pages/trauma/trauma_2.dart';
 import 'package:emergency_app/pages/trauma/trauma_3.dart';
@@ -29,6 +30,7 @@ class AppRoute {
     initialLocation: '/login',
     routes: [
       login,
+      register,
       home,
       trauma1,
       trauma2,
@@ -64,6 +66,12 @@ class AppRoute {
       log('token null');
       return null;
     },
+  );
+  
+  static final register = GoRoute(
+    name: 'register',
+    path: '/register',
+    builder: (context, state) => const RegisterPage(),
   );
 
   static final home = GoRoute(

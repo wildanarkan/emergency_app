@@ -6,6 +6,7 @@ import 'package:emergency_app/data/response/add_patient_response.dart';
 import 'package:emergency_app/data/response/get_hospital_response.dart';
 import 'package:emergency_app/data/response/login_response.dart';
 import 'package:emergency_app/data/response/logout_response.dart';
+import 'package:emergency_app/data/response/register_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppRepository {
@@ -18,6 +19,22 @@ class AppRepository {
     required String password,
   }) {
     return _appNetwork.login(email: email, password: password);
+  }
+
+  Future<RegisterResponse> register({
+    required String name,
+    required String phone,
+    required String email,
+    required String team,
+    required String password,
+  }) {
+    return _appNetwork.register(
+      name: name,
+      phone: phone,
+      email: email,
+      team: team,
+      password: password,
+    );
   }
 
   Future<LogoutResponse> logout() async {

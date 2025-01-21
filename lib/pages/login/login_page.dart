@@ -74,12 +74,13 @@ class LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                     hintText: 'Password',
                     suffixIcon: InkWell(
-                        onTap: () {
-                          setState(() {
-                            _obscureText = !_obscureText;
-                          });
-                        },
-                        child: const Icon(Icons.remove_red_eye)),
+                      onTap: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                      child: const Icon(Icons.remove_red_eye),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 60),
@@ -106,6 +107,25 @@ class LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Belum mempunyai akun? "),
+                    InkWell(
+                      onTap: () {
+                        context.pushNamed(AppRoute.register.name!);
+                      },
+                      child: const Text(
+                        "Register",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
