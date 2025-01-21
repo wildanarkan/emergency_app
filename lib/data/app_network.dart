@@ -7,6 +7,7 @@ import 'package:emergency_app/data/response/add_patient_response.dart';
 import 'package:emergency_app/data/response/get_hospital_response.dart';
 import 'package:emergency_app/data/response/login_response.dart';
 import 'package:emergency_app/data/response/logout_response.dart';
+import 'package:emergency_app/data/response/register_response.dart';
 import 'package:http/http.dart' as http;
 
 class AppNetwork {
@@ -15,6 +16,7 @@ class AppNetwork {
   AppNetwork(this._http);
 
   static const _login = 'login-app';
+  static const _register = 'user';
   static const _logout = 'logout';
   static const _patient = 'patient';
   static const _hospital = 'hospital';
@@ -27,6 +29,28 @@ class AppNetwork {
     final response = await _http.build(path: _login).post(payload);
     final jsonResponse = json.decode(response.body);
     final responseModel = LoginResponse.fromJson(jsonResponse);
+    responseModel.code = response.statusCode;
+    return responseModel;
+  }
+
+  Future<RegisterResponse> register({
+    required String name,
+    required String phone,
+    required String email,
+    required String team,
+    required String password,
+  }) async {
+    final payload = {
+      'name': name,
+      'phone': phone,
+      'team': team,
+      'email': email,
+      'password': password,
+      'role': '3',
+    };
+    final response = await _http.build(path: _register).post(payload);
+    final jsonResponse = json.decode(response.body);
+    final responseModel = RegisterResponse.fromJson(jsonResponse);
     responseModel.code = response.statusCode;
     return responseModel;
   }

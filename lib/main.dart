@@ -3,6 +3,7 @@ import 'package:emergency_app/core/route/AppRoute.dart';
 import 'package:emergency_app/pages/form/form_provider.dart';
 import 'package:emergency_app/pages/home/home_provider.dart';
 import 'package:emergency_app/pages/login/login_provider.dart';
+import 'package:emergency_app/pages/register/register_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => HomeProvider()),
         ChangeNotifierProvider(create: (context) => LoginProvider()),
+        ChangeNotifierProvider(create: (context) => RegisterProvider()),
         ChangeNotifierProvider(create: (context) => FormProvider()),
       ],
       child: const MyApp(),
