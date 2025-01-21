@@ -15,7 +15,8 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FormInput extends StatefulWidget {
-  const FormInput({super.key});
+  final int hospitalId;
+  const FormInput({super.key, required this.hospitalId});
 
   @override
   State<FormInput> createState() => _FormInputState();
@@ -28,7 +29,7 @@ class _FormInputState extends State<FormInput> {
   ];
   int selectedHospitalId = 0;
 
-  bool isLoading = true;
+  bool isLoading = false;
   File? _imageFile;
   DateTime? _arrivalDate;
   DateTime? _incidentDate;
@@ -50,7 +51,7 @@ class _FormInputState extends State<FormInput> {
   @override
   void initState() {
     super.initState();
-    _getHospital();
+    // _getHospital();
   }
 
   @override
@@ -111,9 +112,10 @@ class _FormInputState extends State<FormInput> {
         photoInjury: _imageFile,
         symptom: _symptomController.text,
         arrival: _arrivalDate?.toIso8601String() ?? '',
-        status: selectedHospitalId == 0 ? 2 : 1,
+        // status: selectedHospitalId == 0 ? 2 : 1,
+        status: widget.hospitalId == 0 ? 2 : 1,
         treatment: _treatmentController.text,
-        hospitalId: selectedHospitalId == 0 ? null : selectedHospitalId,
+        hospitalId: widget.hospitalId == 0 ? null : widget.hospitalId,
         request: _requestController.text,
         caseType: caseType ?? 0,
       );
@@ -316,22 +318,22 @@ class _FormInputState extends State<FormInput> {
                                   _showDateErrors && _arrivalDate == null,
                               errorText: 'Waktu kedatangan harus diisi',
                             ),
-                            BuildDropdown(
-                              title: 'Hospital',
-                              items: hospitals
-                                  .map((hospital) => hospital['name'] as String)
-                                  .toList(),
-                              selectedItem: hospitals.firstWhere((hospital) =>
-                                  hospital['id'] == selectedHospitalId)['name'],
-                              onChanged: (selectedValue) {
-                                setState(() {
-                                  selectedHospitalId = hospitals.firstWhere(
-                                      (hospital) =>
-                                          hospital['name'] ==
-                                          selectedValue)['id'] as int;
-                                });
-                              },
-                            ),
+                            // BuildDropdown(
+                            //   title: 'Hospital',
+                            //   items: hospitals
+                            //       .map((hospital) => hospital['name'] as String)
+                            //       .toList(),
+                            //   selectedItem: hospitals.firstWhere((hospital) =>
+                            //       hospital['id'] == selectedHospitalId)['name'],
+                            //   onChanged: (selectedValue) {
+                            //     setState(() {
+                            //       selectedHospitalId = hospitals.firstWhere(
+                            //           (hospital) =>
+                            //               hospital['name'] ==
+                            //               selectedValue)['id'] as int;
+                            //     });
+                            //   },
+                            // ),
                             BuildField(
                               title: 'Request',
                               hintText: 'Permintaan catatan khusus',
@@ -363,48 +365,48 @@ class _FormInputState extends State<FormInput> {
     );
   }
 
-  _getHospital() async {
-    try {
-      final data =
-          await Provider.of<FormProvider>(context, listen: false).getHospital();
-      final hospitalsList = data
-          .map((hospital) => {
-                'id': hospital['id'] as int,
-                'name': hospital['name'] as String,
-              })
-          .toList();
+  // _getHospital() async {
+  //   try {
+  //     final data =
+  //         await Provider.of<FormProvider>(context, listen: false).getHospital();
+  //     final hospitalsList = data
+  //         .map((hospital) => {
+  //               'id': hospital['id'] as int,
+  //               'name': hospital['name'] as String,
+  //             })
+  //         .toList();
 
-      if (!mounted) return;
+  //     if (!mounted) return;
 
-      setState(() {
-        isLoading = false;
-        if (hospitalsList.isNotEmpty) {
-          hospitals = [
-            {'id': 0, 'name': '-'},
-            ...hospitalsList
-          ];
-          selectedHospitalId = 0;
-        } else {
-          hospitals = [
-            {'id': 0, 'name': '-'}
-          ];
-          selectedHospitalId = 0;
-        }
-      });
-    } catch (e) {
-      if (!mounted) return;
-      setState(() {
-        isLoading = false;
-        hospitals = [
-          {'id': 0, 'name': '-'}
-        ];
-        selectedHospitalId = 0;
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Failed to load hospitals. Please try again later.'),
-        ),
-      );
-    }
-  }
+  //     setState(() {
+  //       isLoading = false;
+  //       if (hospitalsList.isNotEmpty) {
+  //         hospitals = [
+  //           {'id': 0, 'name': '-'},
+  //           ...hospitalsList
+  //         ];
+  //         selectedHospitalId = 0;
+  //       } else {
+  //         hospitals = [
+  //           {'id': 0, 'name': '-'}
+  //         ];
+  //         selectedHospitalId = 0;
+  //       }
+  //     });
+  //   } catch (e) {
+  //     if (!mounted) return;
+  //     setState(() {
+  //       isLoading = false;
+  //       hospitals = [
+  //         {'id': 0, 'name': '-'}
+  //       ];
+  //       selectedHospitalId = 0;
+  //     });
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(
+  //         content: Text('Failed to load hospitals. Please try again later.'),
+  //       ),
+  //     );
+  //   }
+  // }
 }

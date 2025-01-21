@@ -68,7 +68,7 @@ class _NontraumaResultState extends State<NontraumaResult> {
               buildButtonOption(
                 option1: ButtonOptionModel(
                   title: 'Isi format data prenotification',
-                  onTap: () => context.pushNamed(AppRoute.formInput.name!),
+                  onTap: () => context.pushNamed(AppRoute.traumaResult.name!, extra: true),
                 ),
               ),
             ],
