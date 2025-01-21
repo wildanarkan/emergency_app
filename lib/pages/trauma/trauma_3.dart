@@ -34,18 +34,21 @@ class _Trauma3State extends State<Trauma3> {
                     SizedBox(height: 20),
                     Text(
                       'Tentukan adanya salah satu mekanisme cidera berikut ini',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 32),
                     BuildDescriptionPoint(
-                      value: 'Jatuh dari ketinggian 3 meter, pada pasien anak 2-3 x TB',
+                      value:
+                          'Jatuh dari ketinggian 3 meter, pada pasien anak 2-3 x TB',
                     ),
                     SizedBox(height: 8),
                     BuildDescriptionPoint(
                       value: 'Kecelakaan mobil dengan potensi resiko tinggi :',
                     ),
                     BuildDescriptionPoint(
-                      value: 'Kerusakan bagian dalam mobil, terlempar keluar dari mobil',
+                      value:
+                          'Kerusakan bagian dalam mobil, terlempar keluar dari mobil',
                       icon: Icons.check,
                     ),
                     BuildDescriptionPoint(
@@ -53,16 +56,19 @@ class _Trauma3State extends State<Trauma3> {
                       icon: Icons.check,
                     ),
                     BuildDescriptionPoint(
-                      value: 'Terdapat penumpang yang meninggal dalam mobil yang sama',
+                      value:
+                          'Terdapat penumpang yang meninggal dalam mobil yang sama',
                       icon: Icons.check,
                     ),
                     SizedBox(height: 8),
                     BuildDescriptionPoint(
-                      value: 'Pengandara terlempar dari kendaraan (sepeda motor/sepeda) dengan dampak yang signifikan.',
+                      value:
+                          'Pengandara terlempar dari kendaraan (sepeda motor/sepeda) dengan dampak yang signifikan.',
                     ),
                     SizedBox(height: 8),
                     BuildDescriptionPoint(
-                      value: 'Pejalan kaki atau pengendara sepeda tertabrak kendaraan dengan kecepatan 20 MPH (>32, 187 KM/ jam)',
+                      value:
+                          'Pejalan kaki atau pengendara sepeda tertabrak kendaraan dengan kecepatan 20 MPH (>32, 187 KM/ jam)',
                     ),
                     SizedBox(height: 8),
                     BuildDescriptionPoint(
@@ -76,7 +82,9 @@ class _Trauma3State extends State<Trauma3> {
             buildButtonOption(
               option1: ButtonOptionModel(
                 title: 'Ya',
-                onTap: () => context.pushNamed(AppRoute.formInput.name!),
+                onTap: () {
+                  context.pushNamed(AppRoute.traumaResult.name!, extra: true);
+                },
               ),
               option2: ButtonOptionModel(
                 title: 'Tidak',
