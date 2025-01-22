@@ -17,6 +17,7 @@ class Trauma1 extends StatelessWidget {
         title: 'Prenotification',
         enableBackButton: true,
       ),
+      backgroundColor: Colors.white,
       body: Container(
         padding: const EdgeInsets.all(16),
         child: Column(

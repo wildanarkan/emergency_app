@@ -22,6 +22,7 @@ class _Trauma4State extends State<Trauma4> {
         title: 'Prenotification',
         enableBackButton: true,
       ),
+      backgroundColor: Colors.white,
       body: Container(
         padding: const EdgeInsets.all(16),
         child: Column(

@@ -168,6 +168,7 @@ class _FormInputState extends State<FormInput> {
         title: 'Isi format data prenotification',
         enableBackButton: true,
       ),
+      backgroundColor: Colors.white,
       body: Container(
         padding: const EdgeInsets.all(16),
         child: isLoading

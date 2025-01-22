@@ -34,6 +34,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: buildAppBar(
           title: 'Register', enableBackButton: true, context: context),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
@@ -88,13 +89,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 60),
               SizedBox(
+                height: 52,
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () => _handleRegister(context),
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    backgroundColor: Colors.blueAccent,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -104,6 +106,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white
                     ),
                   ),
                 ),

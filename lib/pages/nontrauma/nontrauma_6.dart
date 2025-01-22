@@ -24,6 +24,7 @@ class _Nontrauma6State extends State<Nontrauma6> {
         title: 'Prenotification Non Trauma',
         enableBackButton: true,
       ),
+      backgroundColor: Colors.white,
       body: Container(
         padding: const EdgeInsets.all(16),
         child: Column(

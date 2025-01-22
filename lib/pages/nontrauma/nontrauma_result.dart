@@ -26,6 +26,7 @@ class _NontraumaResultState extends State<NontraumaResult> {
         title: 'Hasil Pemeriksaan',
         enableBackButton: true,
       ),
+      backgroundColor: Colors.white,
       body: Container(
         padding: const EdgeInsets.all(16),
         child: Column(
